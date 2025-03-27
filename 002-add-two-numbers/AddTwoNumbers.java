@@ -91,7 +91,7 @@ public class AddTwoNumbers {
         if (carryOver > 0) {
             other.next = new ListNode(carryOver);
         }
-        return l3;
+        return l3.next;
     }
 
     public static class ListNode {
