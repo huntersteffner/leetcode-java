@@ -3,7 +3,8 @@ import java.util.Stack;
 public class ValidParentheses {
     public static void main(String[] args) {
 
-        
+        System.out.println(isValid("()))"));
+        System.out.println(isValid("(){}}{"));
         System.out.println(isValid("({[]()}[(){()}])"));
         System.out.println(isValid("({[]()}[(){())])"));
         System.out.println(isValid("()"));
@@ -16,6 +17,10 @@ public class ValidParentheses {
         
         Stack<Character> stack = new Stack<Character>();
 
+        if (s.charAt(0) == ')' || s.charAt(0) == ']' || s.charAt(0) == '}') {
+            return false;
+        }
+
         for (int index = 0; index < s.length(); index++) {
             if (s.charAt(index) == '(') {
                 stack.push(')');
@@ -23,12 +28,8 @@ public class ValidParentheses {
                 stack.push(']');
             } else if (s.charAt(index) == '{') {
                 stack.push('}');
-            } else {
-                if (s.charAt(index) == stack.peek()) {
-                    stack.pop();
-                } else {
-                    break;
-                }
+            } else if(stack.isEmpty() || stack.pop() != s.charAt(index)) {
+                return false;
             }
         }
 
